@@ -5,8 +5,8 @@ services:
     image: postgres
 
   rabbit:
-    image:
-      
+    image: rabbitmq
+
   web:
     # specifies path to build context (Dockerfile in top-level directory)
     build: . 
@@ -17,4 +17,5 @@ services:
       - "8000:8000"
     depends_on:
       - db
+      - rabbit
  
