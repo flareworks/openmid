@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from openmid.views import champions
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('champions/', champions.index),
 ]
