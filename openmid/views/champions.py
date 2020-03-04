@@ -1,17 +1,29 @@
 from django.http import JsonResponse
-from openmid.models.summoner import Summoner
+from django.core.serializers import serialize
+
+from openmid.models import Summoner
 from openmid.services import riot_ingest_service
 from openmid.enums.league_constants import (
     Region, Tier, Division
 )
 
 def index(request):
-    summoners = _crawl()
+    summoner_data = _crawl()
+    s = summoner_data[0]
 
-    data = {
-        'foo': 'bar'
-    }
-    return JsonResponse(data)
+    print(s)
+
+    summoner = Summoner.objects.create(
+        summoner_id=s['id'],
+        account_id=s['accountId'],
+        puuid=s['puuid'],
+        name=s['name'],
+        profile_icon_id=s['profileIconId'],
+        summoner_level=s['summonerLevel'],
+        revision_date=s['revisionDate'],
+    )
+
+    return JsonResponse(s)
 
 
 def _crawl():
@@ -23,7 +35,7 @@ def _crawl():
     # api calls in a loop, yikes.
     # TODO: make this async
     summoners = []
-    for summonerId in summoner_ids[0:10]:
+    for summonerId in summoner_ids[0:1]:
         summoner = riot_ingest_service.fetch_summoners(Region.KR, summonerId)
         summoners.append(summoner)
 

@@ -4,12 +4,12 @@ services:
   db:
     image: postgres
     ports:
-      - "8080:8080"
+      - "5432:5432"
 
   rabbit:
     image: rabbitmq
     ports:
-        - "5672:5672"
+      - "5672:5672"
 
   web:
     # specifies path to build context (Dockerfile in top-level directory)
