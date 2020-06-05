@@ -4,7 +4,8 @@ from openmid.enums.league_constants import (
 )
 
 # Move to settings / environment variable. This dev API key expires after 24 hours.
-RIOT_API_KEY = "RGAPI-e95e210e-0f3d-4ab3-a016-45875e74fc57"
+# Refresh API key at https://developer.riotgames.com/
+RIOT_API_KEY = "RGAPI-80210f6a-1a50-40db-9a44-ea69eed81bd4"
 QUEUE = "RANKED_SOLO_5x5"
 
 

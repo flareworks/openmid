@@ -30,7 +30,6 @@ def _crawl():
     match_data = riot_ingest_service.fetch_ranked_matches(Region.KR, Tier.GRANDMASTER, Division.I)
 
     # get initial list of summoner Ids.
-    summoner_ids = [match['summonerId'] for match in match_data]
 
     # api calls in a loop, yikes.
     # TODO: make this async
@@ -40,4 +39,3 @@ def _crawl():
         summoners.append(summoner)
 
     return summoners
-
